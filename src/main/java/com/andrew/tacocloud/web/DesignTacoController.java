@@ -5,8 +5,8 @@ import com.andrew.tacocloud.Ingredient;
 import com.andrew.tacocloud.Ingredient.Type;
 import com.andrew.tacocloud.Order;
 import com.andrew.tacocloud.Taco;
-import com.andrew.tacocloud.data.IngredientRepository;
-import com.andrew.tacocloud.data.TacoRepository;
+import com.andrew.tacocloud.data.jpa.IngredientRepositoryJpa;
+import com.andrew.tacocloud.data.jpa.TacoRepositoryJpa;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,12 +34,12 @@ public class DesignTacoController {
         return new Taco();
     }
 
-    private final IngredientRepository ingredientRepository;
-    private final TacoRepository tacoRepository;
+    private final IngredientRepositoryJpa ingredientRepository;
+    private final TacoRepositoryJpa tacoRepository;
 
     @Autowired
-    public DesignTacoController(IngredientRepository ingredientRepository,
-                                TacoRepository tacoRepository){
+    public DesignTacoController(IngredientRepositoryJpa ingredientRepository,
+                                TacoRepositoryJpa tacoRepository){
         this.ingredientRepository = ingredientRepository;
         this.tacoRepository = tacoRepository;
     }
@@ -62,10 +62,8 @@ public class DesignTacoController {
     public String processDesign(@Valid Taco design, Errors errors,
                                 @ModelAttribute("order") Order order){
         if(errors.hasErrors()){
-            log.error(errors.getAllErrors().toString());
             return DESIGN_VIEW_NAME;
         }
-
 
         Taco savedTaco =  tacoRepository.save(design);
         order.addDesign(savedTaco);

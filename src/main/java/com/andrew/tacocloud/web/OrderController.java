@@ -2,9 +2,11 @@ package com.andrew.tacocloud.web;
 
 
 import com.andrew.tacocloud.Order;
-import com.andrew.tacocloud.data.OrderRepository;
+import com.andrew.tacocloud.User;
+import com.andrew.tacocloud.data.jpa.OrderRepositoryJpa;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -19,10 +21,10 @@ import javax.validation.Valid;
 @SessionAttributes("order")
 public class OrderController {
 
-    private final OrderRepository orderRepository;
+    private final OrderRepositoryJpa orderRepository;
 
     @Autowired
-    public OrderController(OrderRepository orderRepository){
+    public OrderController(OrderRepositoryJpa orderRepository){
         this.orderRepository = orderRepository;
     }
 
@@ -32,9 +34,11 @@ public class OrderController {
         return "orderForm";
     }
     @PostMapping
-    public String processOrder(@Valid Order order, Errors errors, SessionStatus sessionStatus){
+    public String processOrder(@Valid Order order, Errors errors, SessionStatus sessionStatus,
+                               @AuthenticationPrincipal User user){
         if(errors.hasErrors())
             return "orderForm";
+        order.setUser(user);
         orderRepository.save(order);
         sessionStatus.setComplete();
         return "redirect:/";
