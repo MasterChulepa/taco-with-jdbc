@@ -1,0 +1,8 @@
+server:
+  port: 9090
+  ssl:
+    key-store: classpath:mykeys.jks
+    key-store-password: da1net1
+    key-password: da1net1
+    enabled: true
+    key-store-type: JKS
