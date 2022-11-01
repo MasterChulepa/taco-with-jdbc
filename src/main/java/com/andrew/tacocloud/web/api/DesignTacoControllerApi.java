@@ -1,15 +1,16 @@
 package com.andrew.tacocloud.web.api;
 
 
-import com.andrew.tacocloud.Taco;
+import com.andrew.tacocloud.web.api.models.TacoModel;
+import com.andrew.tacocloud.web.api.models.TacoModelAssembler;
+import com.andrew.tacocloud.web.domains.Taco;
 import com.andrew.tacocloud.data.jpa.TacoRepositoryJpa;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.hateoas.CollectionModel;
-import org.springframework.hateoas.EntityModel;
-import org.springframework.hateoas.Link;
-import org.springframework.hateoas.LinkRelation;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,22 +21,22 @@ import java.util.Optional;
 @RestController
 @RequestMapping(path = "/design", produces = "application/json")
 @CrossOrigin(origins = "*")
-public class DesignTacoController {
+public class DesignTacoControllerApi {
     private final TacoRepositoryJpa tacoRepository;
 
     @Autowired
-    public DesignTacoController(TacoRepositoryJpa tacoRepository) {
+    public DesignTacoControllerApi(TacoRepositoryJpa tacoRepository) {
         this.tacoRepository = tacoRepository;
     }
 
     @GetMapping("/recent")
-    public CollectionModel<EntityModel<Taco>> recentTacos() {
+    public CollectionModel<TacoModel> recentTacos() {
         PageRequest pageRequest = PageRequest.of(0, 12, Sort.by("createdAt").descending());
         List<Taco> tacos = tacoRepository.findAll(pageRequest).getContent();
-        CollectionModel<EntityModel<Taco>> recentTacos = CollectionModel.wrap(tacos);
+        CollectionModel<TacoModel> recentTacos = new TacoModelAssembler().toCollectionModel(tacos);
         recentTacos.add(
-                Link.of("http://localhost:8080/design/recent", LinkRelation.of("recents"))
-        );
+                linkTo(methodOn(DesignTacoControllerApi.class).recentTacos()) //URL is derived from the controller’s mappings,
+                        .withRel("recents"));                                 // and absolutely no portion is hardcoded
         return recentTacos;
     }
 

@@ -1,7 +1,7 @@
 package com.andrew.tacocloud.data.jdbc;
 
-import com.andrew.tacocloud.Ingredient;
-import com.andrew.tacocloud.Taco;
+import com.andrew.tacocloud.web.domains.Ingredient;
+import com.andrew.tacocloud.web.domains.Taco;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;

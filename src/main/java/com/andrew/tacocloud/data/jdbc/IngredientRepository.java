@@ -1,6 +1,6 @@
 package com.andrew.tacocloud.data.jdbc;
 
-import com.andrew.tacocloud.Ingredient;
+import com.andrew.tacocloud.web.domains.Ingredient;
 
 public interface IngredientRepository {
     Iterable<Ingredient> findAll();

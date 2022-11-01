@@ -1,8 +1,8 @@
 package com.andrew.tacocloud.data.jdbc;
 
 
-import com.andrew.tacocloud.Order;
-import com.andrew.tacocloud.Taco;
+import com.andrew.tacocloud.web.domains.Order;
+import com.andrew.tacocloud.web.domains.Taco;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;

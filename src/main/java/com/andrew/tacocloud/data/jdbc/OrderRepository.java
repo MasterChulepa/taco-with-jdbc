@@ -1,6 +1,6 @@
 package com.andrew.tacocloud.data.jdbc;
 
-import com.andrew.tacocloud.Order;
+import com.andrew.tacocloud.web.domains.Order;
 
 public interface OrderRepository {
 

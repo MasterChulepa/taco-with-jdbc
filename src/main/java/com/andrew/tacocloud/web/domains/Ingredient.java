@@ -1,4 +1,4 @@
-package com.andrew.tacocloud;
+package com.andrew.tacocloud.web.domains;
 
 
 import lombok.AccessLevel;

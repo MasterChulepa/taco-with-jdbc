@@ -1,6 +1,7 @@
-package com.andrew.tacocloud;
+package com.andrew.tacocloud.web.domains;
 
 
+import com.andrew.tacocloud.web.domains.Ingredient;
 import lombok.Data;
 
 import javax.persistence.*;

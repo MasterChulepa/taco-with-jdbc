@@ -1,10 +1,10 @@
 package com.andrew.tacocloud.web;
 
 
-import com.andrew.tacocloud.Ingredient;
-import com.andrew.tacocloud.Ingredient.Type;
-import com.andrew.tacocloud.Order;
-import com.andrew.tacocloud.Taco;
+import com.andrew.tacocloud.web.domains.Ingredient;
+import com.andrew.tacocloud.web.domains.Ingredient.Type;
+import com.andrew.tacocloud.web.domains.Order;
+import com.andrew.tacocloud.web.domains.Taco;
 import com.andrew.tacocloud.data.jpa.IngredientRepositoryJpa;
 import com.andrew.tacocloud.data.jpa.TacoRepositoryJpa;
 import lombok.extern.slf4j.Slf4j;

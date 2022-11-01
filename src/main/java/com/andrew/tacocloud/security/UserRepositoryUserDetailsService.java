@@ -1,6 +1,6 @@
 package com.andrew.tacocloud.security;
 
-import com.andrew.tacocloud.User;
+import com.andrew.tacocloud.web.domains.User;
 import com.andrew.tacocloud.data.jpa.UserRepositoryJpa;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

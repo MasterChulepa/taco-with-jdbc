@@ -1,8 +1,8 @@
 package com.andrew.tacocloud.web;
 
 
-import com.andrew.tacocloud.Order;
-import com.andrew.tacocloud.User;
+import com.andrew.tacocloud.web.domains.Order;
+import com.andrew.tacocloud.web.domains.User;
 import com.andrew.tacocloud.data.jpa.OrderRepositoryJpa;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

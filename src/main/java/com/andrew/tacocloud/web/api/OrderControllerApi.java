@@ -1,7 +1,7 @@
 package com.andrew.tacocloud.web.api;
 
 
-import com.andrew.tacocloud.Order;
+import com.andrew.tacocloud.web.domains.Order;
 import com.andrew.tacocloud.data.jpa.OrderRepositoryJpa;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(path = "/orders", produces = "application/json")
 @CrossOrigin(origins = "*")
-public class OrderApiController {
+public class OrderControllerApi {
     private final OrderRepositoryJpa orderRepositoryJpa;
 
     @Autowired
-    public OrderApiController(OrderRepositoryJpa orderRepositoryJpa) {
+    public OrderControllerApi(OrderRepositoryJpa orderRepositoryJpa) {
         this.orderRepositoryJpa = orderRepositoryJpa;
     }
 
